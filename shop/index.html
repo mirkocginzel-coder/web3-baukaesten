@@ -99,13 +99,20 @@
     background: transparent; border: none; color: var(--text); font-size: 14px; width: 90px; outline: none;
   }
 
-  .pay-methods { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-  .pay-card {
-    background: var(--bg); border: 1px solid var(--border); border-radius: 14px;
-    padding: 18px 22px; text-align: left; min-width: 260px; max-width: 320px;
+  .pay-methods { max-width: 420px; margin: 0 auto; text-align: left; }
+  .pay-select {
+    width: 100%; background: var(--bg); border: 1px solid var(--border); color: var(--text);
+    font-size: 14px; font-weight: 600; padding: 14px 16px; border-radius: 12px;
+    margin-bottom: 14px; cursor: pointer; appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23a99fc4' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 16px center;
   }
-  .pay-card h4 { font-size: 14px; margin-bottom: 8px; }
-  .pay-card code {
+  .pay-select:focus { outline: none; border-color: var(--accent); }
+  .pay-display {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 14px;
+    padding: 18px 22px; text-align: left;
+  }
+  .pay-display code {
     display: block; background: var(--card); border-radius: 8px; padding: 8px 10px;
     font-size: 12px; color: var(--text-dim); word-break: break-all; margin-bottom: 8px;
   }
@@ -115,6 +122,7 @@
   }
   .copy-btn:hover { color: var(--text); border-color: var(--accent); }
   .placeholder-note { font-size: 11px; color: #eab308; margin-top: 6px; }
+  .file-note { font-size: 12px; color: var(--text-dim); margin-top: 6px; }
 
   footer { text-align: center; padding: 32px 0; color: var(--text-dim); font-size: 12px; opacity: 0.7; }
 
@@ -220,29 +228,16 @@
     </div>
 
     <div class="pay-methods">
-      <div class="pay-card">
-        <h4>💳 EVM (BNB Chain / Polygon / Ethereum)</h4>
-        <code id="walletEvm">0xb54B8F1Fa4A864d8272840D9653CdC8919719061</code>
-        <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('walletEvm').textContent)">Adresse kopieren</button>
-        <div class="file-note">USDT/USDC — bitte nur über eines dieser drei Netzwerke senden</div>
-      </div>
-      <div class="pay-card">
-        <h4>🔺 Tron (TRC-20)</h4>
-        <code id="walletTrx">TDMU9E8jam2r5tVt88zJVy934wh4eCHay7</code>
-        <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('walletTrx').textContent)">Adresse kopieren</button>
-        <div class="file-note">USDT — nur über das Tron-Netzwerk senden</div>
-      </div>
-      <div class="pay-card">
-        <h4>◎ Solana</h4>
-        <code id="walletSol">BRHfbN1i5BhyjxXYeMCEsyqYXWkgZTvybU1WPXXB6nfE</code>
-        <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('walletSol').textContent)">Adresse kopieren</button>
-        <div class="file-note">USDC/USDT — nur über das Solana-Netzwerk senden</div>
-      </div>
-      <div class="pay-card">
-        <h4>🅿️ PayPal</h4>
-        <code id="paypalLink">PLATZHALTER_PAYPAL_LINK</code>
-        <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('paypalLink').textContent)">Link kopieren</button>
-        <div class="placeholder-note">⚠ Platzhalter — echten PayPal.me-Link noch eintragen</div>
+      <select id="paySelect" class="pay-select" onchange="updatePayDisplay()">
+        <option value="evm">💳 EVM (BNB Chain / Polygon / Ethereum)</option>
+        <option value="trx">🔺 Tron (TRC-20)</option>
+        <option value="sol">◎ Solana</option>
+        <option value="paypal">🅿️ PayPal</option>
+      </select>
+      <div class="pay-display">
+        <code id="payValue"></code>
+        <button class="copy-btn" onclick="copyPayValue()">Kopieren</button>
+        <div id="payNote"></div>
       </div>
     </div>
   </section>
@@ -258,6 +253,28 @@
 </div>
 
 <script>
+  const PAY_METHODS = {
+    evm:    { value: '0xb54B8F1Fa4A864d8272840D9653CdC8919719061', note: 'USDT/USDC — bitte nur über eines dieser drei Netzwerke senden', placeholder: false },
+    trx:    { value: 'TDMU9E8jam2r5tVt88zJVy934wh4eCHay7', note: 'USDT — nur über das Tron-Netzwerk senden', placeholder: false },
+    sol:    { value: 'BRHfbN1i5BhyjxXYeMCEsyqYXWkgZTvybU1WPXXB6nfE', note: 'USDC/USDT — nur über das Solana-Netzwerk senden', placeholder: false },
+    paypal: { value: 'PLATZHALTER_PAYPAL_LINK', note: '⚠ Platzhalter — echten PayPal.me-Link noch eintragen', placeholder: true }
+  };
+
+  function updatePayDisplay() {
+    const sel = document.getElementById('paySelect').value;
+    const m = PAY_METHODS[sel];
+    document.getElementById('payValue').textContent = m.value;
+    const noteEl = document.getElementById('payNote');
+    noteEl.textContent = m.note;
+    noteEl.className = m.placeholder ? 'placeholder-note' : 'file-note';
+  }
+
+  function copyPayValue() {
+    navigator.clipboard.writeText(document.getElementById('payValue').textContent);
+  }
+
+  updatePayDisplay();
+
   document.querySelectorAll('.tier').forEach(function (tier) {
     tier.addEventListener('click', function () {
       document.querySelectorAll('.tier').forEach(function (t) { t.classList.remove('recommended'); });
