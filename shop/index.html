@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web3 Landingpage Baukästen — kostenlos herunterladen</title>
+<style>
+  :root {
+    --bg: #0f0d17;
+    --card: #181425;
+    --border: #2c2640;
+    --text: #f1eefb;
+    --text-dim: #a99fc4;
+    --accent: #8b5cf6;
+    --accent-2: #d946ef;
+    --green: #34d399;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+    line-height: 1.55;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+  header {
+    text-align: center;
+    padding: 80px 0 56px;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(139,92,246,0.12); border: 1px solid rgba(139,92,246,0.35);
+    color: var(--accent-2); font-size: 13px; padding: 6px 14px; border-radius: 999px;
+    margin-bottom: 20px;
+  }
+  h1 { font-size: 42px; font-weight: 800; letter-spacing: -0.02em; max-width: 640px; margin: 0 auto 16px; }
+  h1 span { background: linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .subhead { color: var(--text-dim); font-size: 17px; max-width: 520px; margin: 0 auto; }
+
+  .products {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+    padding-bottom: 72px;
+  }
+  .product-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+    overflow: hidden; display: flex; flex-direction: column;
+  }
+  .preview {
+    height: 160px; display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .preview.vaultis { background: linear-gradient(135deg, #0b1220, #101a2e); color: #3b82f6; }
+  .preview.meridian { background: linear-gradient(135deg, #1a1410, #221a14); color: #ff8a3d; }
+  .product-body { padding: 24px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  .product-body h3 { font-size: 20px; }
+  .product-body p { color: var(--text-dim); font-size: 14px; }
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin: 4px 0; }
+  .tag {
+    font-size: 11px; padding: 4px 10px; border-radius: 999px;
+    background: rgba(139,92,246,0.12); color: var(--accent-2); font-weight: 600;
+  }
+  .download-btn {
+    margin-top: auto; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #14091f; font-weight: 700; font-size: 14px;
+    padding: 12px 20px; border-radius: 12px; border: none; cursor: pointer;
+  }
+  .download-btn:hover { filter: brightness(1.08); }
+  .file-note { font-size: 12px; color: var(--text-dim); text-align: center; }
+
+  section.donate {
+    background: var(--card); border: 1px solid var(--border); border-radius: 24px;
+    padding: 48px; text-align: center; margin-bottom: 80px;
+  }
+  .donate h2 { font-size: 26px; margin-bottom: 10px; }
+  .donate > p { color: var(--text-dim); font-size: 15px; max-width: 480px; margin: 0 auto 32px; }
+
+  .tiers { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+  .tier {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 14px;
+    padding: 16px 28px; cursor: pointer; font-weight: 700; font-size: 16px;
+    transition: all .15s ease; position: relative;
+  }
+  .tier:hover { border-color: var(--accent); }
+  .tier.recommended { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .tier.recommended::before {
+    content: 'Empfohlen'; position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+    background: var(--accent); color: #14091f; font-size: 10px; font-weight: 800;
+    padding: 3px 10px; border-radius: 999px; letter-spacing: 0.03em;
+  }
+  .tier .amount { font-size: 20px; }
+  .custom-amount {
+    display: inline-flex; align-items: center; gap: 8px; background: var(--bg);
+    border: 1px solid var(--border); border-radius: 14px; padding: 10px 16px; margin-bottom: 32px;
+  }
+  .custom-amount input {
+    background: transparent; border: none; color: var(--text); font-size: 14px; width: 90px; outline: none;
+  }
+
+  .pay-methods { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .pay-card {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 14px;
+    padding: 18px 22px; text-align: left; min-width: 260px; max-width: 320px;
+  }
+  .pay-card h4 { font-size: 14px; margin-bottom: 8px; }
+  .pay-card code {
+    display: block; background: var(--card); border-radius: 8px; padding: 8px 10px;
+    font-size: 12px; color: var(--text-dim); word-break: break-all; margin-bottom: 8px;
+  }
+  .copy-btn {
+    background: transparent; border: 1px solid var(--border); color: var(--text-dim);
+    border-radius: 6px; padding: 4px 10px; font-size: 11px; cursor: pointer;
+  }
+  .copy-btn:hover { color: var(--text); border-color: var(--accent); }
+  .placeholder-note { font-size: 11px; color: #eab308; margin-top: 6px; }
+
+  footer { text-align: center; padding: 32px 0; color: var(--text-dim); font-size: 12px; opacity: 0.7; }
+
+  #infoBtn {
+    position: fixed; top: 20px; left: 20px; z-index: 70;
+    background: var(--card); border: 1px solid var(--border); color: var(--text);
+    font-size: 13px; font-weight: 600; padding: 10px 16px; border-radius: 999px;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  }
+  #infoBtn:hover { border-color: var(--accent); }
+
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(5,3,10,0.75);
+    z-index: 80; align-items: center; justify-content: center; padding: 24px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+    max-width: 560px; width: 100%; max-height: 85vh; overflow-y: auto;
+    padding: 32px 36px; position: relative;
+  }
+  .modal-box h2 { font-size: 22px; margin-bottom: 16px; }
+  .modal-box p { color: var(--text-dim); font-size: 14.5px; margin-bottom: 14px; }
+  .modal-box strong { color: var(--text); }
+  .modal-close {
+    position: absolute; top: 18px; right: 20px; background: transparent; border: none;
+    color: var(--text-dim); font-size: 20px; cursor: pointer; line-height: 1;
+  }
+  .modal-close:hover { color: var(--text); }
+
+  .legal-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 16px; }
+  .legal-links a { color: var(--text-dim); text-decoration: underline; cursor: pointer; }
+  .legal-links a:hover { color: var(--text); }
+
+  .legal-section {
+    display: none; text-align: left; max-width: 640px; margin: 0 auto 40px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px 32px;
+  }
+  .legal-section.open { display: block; }
+  .legal-section h3 { font-size: 17px; margin-bottom: 14px; }
+  .legal-section p { color: var(--text-dim); font-size: 13px; margin-bottom: 10px; }
+  .legal-section .fill { color: #eab308; }
+
+  @media (max-width: 720px) {
+    .products { grid-template-columns: 1fr; }
+    h1 { font-size: 32px; }
+    section.donate { padding: 32px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<button id="infoBtn" onclick="document.getElementById('infoModal').classList.add('open')">ℹ️ Was kann ich damit machen?</button>
+
+<div id="infoModal" class="modal-overlay" onclick="if(event.target===this) this.classList.remove('open')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="document.getElementById('infoModal').classList.remove('open')">✕</button>
+    <h2>Was du mit einem Baukasten machen kannst</h2>
+    <p>Jeder der beiden Baukästen ist eine fertige, professionell gestaltete Webseite für dein eigenes Web3-Projekt — startklar zum Download, ganz ohne Programmierkenntnisse.</p>
+    <p>Du lädst die Datei herunter, öffnest sie in einem einfachen Texteditor und ersetzt die vorhandenen Texte, Zahlen und Farben durch deine eigenen — genauso unkompliziert wie in einem Textdokument. Kein Programmieren, kein technisches Vorwissen nötig.</p>
+    <p>Sobald deine Seite angepasst ist, lädst du sie auf einen eigenen Webspace hoch — schon ist sie live im Internet erreichbar, unter deiner eigenen Adresse.</p>
+    <p><strong>Vaultis</strong> eignet sich für alle, die ein Finanz- oder Anlageprojekt im Krypto-Bereich vorstellen wollen — mit allem, was dazugehört: optisch integrierter Wallet-Anbindung, Vertrauens-Elementen wie Sicherheits-Badges und überzeugend wirkenden Kennzahlen.</p>
+    <p><strong>Meridian</strong> eignet sich für Gemeinschafts- und Abstimmungsprojekte — etwa eine Gruppe, die gemeinsam entscheidet, wofür ein gemeinsames Budget eingesetzt wird.</p>
+    <p>Ein kleiner, aber wichtiger Hinweis: Beide Seiten sind fertige Schaufenster — die Optik und Struktur einer professionellen Web3-Seite, bereit zum Ausfüllen mit deinen eigenen Inhalten. Für echte Blockchain-Funktionen, etwa eine tatsächliche Wallet-Verbindung, braucht es zusätzliche technische Anbindung, die du bei Bedarf selbst ergänzen müsstest.</p>
+    <p>Kurz gesagt: Du bekommst in wenigen Minuten eine professionelle Web3-Visitenkarte — ganz ohne bei null anzufangen.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">🎁 Kostenlos · Open Download · Spende freiwillig</div>
+    <h1>Web3-Landingpage-<span>Baukästen</span></h1>
+    <p class="subhead">Fertige, lauffähige HTML/CSS/JS-Vorlagen zum Selbstanpassen — kostenlos herunterladen, kein Login, keine Bedingungen.</p>
+  </header>
+
+  <div class="products">
+    <div class="product-card">
+      <div class="preview vaultis">DeFi / Vault-Stil</div>
+      <div class="product-body">
+        <h3>Vaultis — DeFi Vault Template</h3>
+        <p>Dunkles, technisches Design für Staking-/Yield-Protokolle. Wallet-Connect-UI, Vault-Karten, Security-Badges, live-animierte Stats.</p>
+        <div class="tags"><span class="tag">DeFi</span><span class="tag">Dark Theme</span><span class="tag">Wallet UI</span></div>
+        <a class="download-btn" href="../downloads/vaultis-defi-baukasten.zip" download>⬇ Kostenlos herunterladen (.zip)</a>
+        <div class="file-note">Enthält: index.html, kein Passwort, sofort einsatzbereit</div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="preview meridian">DAO / Community-Stil</div>
+      <div class="product-body">
+        <h3>Meridian — DAO Community Template</h3>
+        <p>Warmes, einladendes Design für Grants-/Governance-DAOs. Vote-Mechanik-Sektion, Grant-Karten, Treasury-Box, Community-Stats.</p>
+        <div class="tags"><span class="tag">DAO</span><span class="tag">Warm Theme</span><span class="tag">Governance UI</span></div>
+        <a class="download-btn" href="../downloads/meridian-dao-baukasten.zip" download>⬇ Kostenlos herunterladen (.zip)</a>
+        <div class="file-note">Enthält: index.html, kein Passwort, sofort einsatzbereit</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="donate">
+    <h2>Hat dir ein Baukasten geholfen?</h2>
+    <p>Alles bleibt kostenlos — eine freiwillige Spende hilft, weitere Vorlagen zu bauen.</p>
+
+    <div class="tiers">
+      <div class="tier"><div class="amount">3 $</div></div>
+      <div class="tier recommended"><div class="amount">5 $</div></div>
+      <div class="tier"><div class="amount">10 $</div></div>
+    </div>
+    <div class="custom-amount">
+      <span>$</span><input type="number" placeholder="anderer Betrag" min="1">
+    </div>
+
+    <div class="pay-methods">
+      <div class="pay-card">
+        <h4>💳 Krypto-Wallet</h4>
+        <code id="walletAddr">PLATZHALTER_WALLET_ADRESSE</code>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('walletAddr').textContent)">Adresse kopieren</button>
+        <div class="placeholder-note">⚠ Platzhalter — echte Adresse noch eintragen</div>
+      </div>
+      <div class="pay-card">
+        <h4>🅿️ PayPal</h4>
+        <code id="paypalLink">PLATZHALTER_PAYPAL_LINK</code>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('paypalLink').textContent)">Link kopieren</button>
+        <div class="placeholder-note">⚠ Platzhalter — echten PayPal.me-Link noch eintragen</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="legal-links">
+    <a href="../impressum.html">Impressum</a>
+    <a href="../datenschutz.html">Datenschutz</a>
+    <a onclick="toggleLegal('nutzung')">Nutzungshinweise</a>
+    <a href="../">Alle Links</a>
+  </div>
+
+  <div id="legal-nutzung" class="legal-section">
+    <h3>Nutzungshinweise</h3>
+    <p>Die bereitgestellten Baukästen (Vaultis, Meridian) werden kostenlos und ohne Gewährleistung zur Verfügung gestellt ("as is"). Die Nutzung und Anpassung des Codes erfolgt auf eigenes Risiko.</p>
+    <p>Es wird keine Haftung übernommen für Schäden, die durch die Nutzung, Anpassung oder Veröffentlichung der Vorlagen entstehen — außer bei Vorsatz oder grober Fahrlässigkeit.</p>
+    <p>Die Vorlagen dürfen frei angepasst und für eigene (auch kommerzielle) Zwecke verwendet werden.</p>
+  </div>
+
+  <footer>Demo-Shop-Seite · Baukästen zum freien Download · Spende ist freiwillig, keine Kaufverpflichtung</footer>
+</div>
+
+<script>
+  document.querySelectorAll('.tier').forEach(function (tier) {
+    tier.addEventListener('click', function () {
+      document.querySelectorAll('.tier').forEach(function (t) { t.classList.remove('recommended'); });
+      this.classList.add('recommended');
+    });
+  });
+
+  function toggleLegal(id) {
+    var target = document.getElementById('legal-' + id);
+    var wasOpen = target.classList.contains('open');
+    document.querySelectorAll('.legal-section').forEach(function (s) { s.classList.remove('open'); });
+    if (!wasOpen) {
+      target.classList.add('open');
+      target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+</script>
+
+</body>
+</html>

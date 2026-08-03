@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meridian DAO — Funding builders, together</title>
+
+<!-- ===== HIER ÄNDERN: Titel, Beschreibung, Vorschaubild für Social-Media-Links ===== -->
+<meta name="description" content="Meridian DAO vergibt community-gestimmte Grants an unabhängige Web3-Entwickler — transparent, on-chain, ohne Gatekeeper.">
+<meta property="og:title" content="Meridian DAO — Funding builders, together">
+<meta property="og:description" content="Meridian DAO vergibt community-gestimmte Grants an unabhängige Web3-Entwickler — transparent, on-chain, ohne Gatekeeper.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="HIER-VOLLSTAENDIGE-BILD-URL-EINTRAGEN.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Meridian DAO — Funding builders, together">
+<meta name="twitter:description" content="Meridian DAO vergibt community-gestimmte Grants an unabhängige Web3-Entwickler — transparent, on-chain, ohne Gatekeeper.">
+<meta name="twitter:image" content="HIER-VOLLSTAENDIGE-BILD-URL-EINTRAGEN.png">
+<!-- Warum eine vollstaendige URL noetig ist: Social-Media-Crawler (Facebook, X/Twitter,
+     Discord) rufen diese Seite ohne JavaScript und ohne Wissen ueber deinen Server auf —
+     ein relativer Pfad wie "bild.png" bleibt fuer sie leer, es muss https://... sein. -->
+
+<!-- Favicon-Trick: Ein Emoji als data:image/svg+xml spart eine eigene Bilddatei und einen
+     zusaetzlichen HTTP-Request (schnellere Ladezeit) — fuer eigenes Branding trotzdem
+     meist sinnvoll, spaeter auf ein echtes Logo umzustellen. -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🟠</text></svg>">
+
+<style>
+  /* ===== HIER ÄNDERN: Farbschema — jede Farbe hier anpassen, wirkt sich auf die ganze Seite aus =====
+     Farbtheorie-Tipp: --accent und --accent-2 liegen hier bewusst nah beieinander (Orange/Gelb) —
+     warme, benachbarte Farben wirken einladend und community-nah, passend zum DAO-Charakter.
+     Fuer ein DeFi-/Finanzprojekt wuerde dieselbe Palette eher unseriös statt vertrauenswuerdig
+     wirken — Farbwahl sollte immer zur Projektkategorie passen, nicht nur zum eigenen Geschmack. */
+  :root {
+    --bg: #1a1410;          /* Haupt-Hintergrundfarbe (dunkel, warm) */
+    --bg-alt: #221a14;      /* leicht abweichender Hintergrund */
+    --card: #2a2019;        /* Hintergrund von Karten/Boxen */
+    --border: #3d2e21;      /* Rahmenfarbe */
+    --text: #f5ede3;        /* Haupttextfarbe (hell) */
+    --text-dim: #b8a894;    /* gedämpfte Textfarbe (Beschreibungen) */
+    --accent: #ff8a3d;      /* Hauptakzentfarbe (Buttons, Links) */
+    --accent-2: #ffc857;    /* zweite Akzentfarbe (Verläufe) */
+    --green: #7bc47f;       /* Erfolgsfarbe (z.B. "Low Risk") */
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+    line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 0; border-bottom: 1px solid var(--border);
+  }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 20px; }
+  .logo-mark {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  }
+  .nav-links { display: flex; gap: 32px; color: var(--text-dim); font-size: 14px; }
+  .nav-links a:hover { color: var(--text); }
+  .btn {
+    padding: 10px 20px; border-radius: 999px; font-size: 14px; font-weight: 600;
+    border: 1px solid var(--border); cursor: pointer; transition: all .15s ease;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #1a1005; border: none;
+  }
+  .btn-primary:hover { filter: brightness(1.08); }
+  .btn-ghost { background: transparent; color: var(--text); }
+  .btn-ghost:hover { border-color: var(--accent); }
+
+  header.hero { padding: 96px 0 64px; text-align: center; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,138,61,0.12); border: 1px solid rgba(255,138,61,0.35);
+    color: var(--accent-2); font-size: 13px; padding: 6px 14px; border-radius: 999px;
+    margin-bottom: 24px;
+  }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+  h1 { font-size: 52px; font-weight: 800; letter-spacing: -0.02em; max-width: 780px; margin: 0 auto 20px; }
+  h1 span { background: linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .subhead { color: var(--text-dim); font-size: 18px; max-width: 560px; margin: 0 auto 36px; }
+  .hero-ctas { display: flex; gap: 14px; justify-content: center; }
+  .hero-ctas .btn { padding: 14px 28px; font-size: 15px; }
+
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--border); border: 1px solid var(--border); border-radius: 20px;
+    overflow: hidden; margin-top: 64px;
+  }
+  .stat { background: var(--card); padding: 28px; text-align: center; }
+  .stat .num { font-size: 28px; font-weight: 800; color: var(--text); }
+  .stat .label { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
+
+  section { padding: 88px 0; }
+  .section-tag { color: var(--accent-2); font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 12px; }
+  .section-title { font-size: 34px; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 16px; }
+  .section-sub { color: var(--text-dim); max-width: 560px; margin-bottom: 48px; }
+
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .step {
+    background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 28px;
+  }
+  .step-num {
+    width: 36px; height: 36px; border-radius: 50%; background: rgba(255,138,61,0.15);
+    color: var(--accent-2); display: flex; align-items: center; justify-content: center;
+    font-weight: 800; margin-bottom: 20px;
+  }
+  .step h3 { font-size: 18px; margin-bottom: 8px; }
+  .step p { color: var(--text-dim); font-size: 14px; }
+
+  .grants { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .grant-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 26px;
+    transition: border-color .15s ease;
+  }
+  .grant-card:hover { border-color: var(--accent); }
+  .grant-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .cat {
+    font-size: 11px; padding: 4px 12px; border-radius: 999px; font-weight: 700;
+    background: rgba(123,196,127,0.14); color: var(--green);
+  }
+  .grant-card h4 { font-size: 17px; margin-bottom: 8px; }
+  .grant-card p { color: var(--text-dim); font-size: 13px; margin-bottom: 18px; }
+  .grant-meta { display: flex; justify-content: space-between; font-size: 13px; border-top: 1px solid var(--border); padding-top: 14px; }
+  .grant-meta .amount { color: var(--accent-2); font-weight: 700; }
+
+  .gov-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .gov-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 22px; text-align: center;
+  }
+  .gov-icon { font-size: 26px; margin-bottom: 12px; }
+  .gov-card h4 { font-size: 14px; margin-bottom: 6px; }
+  .gov-card p { font-size: 12px; color: var(--text-dim); }
+
+  footer { border-top: 1px solid var(--border); padding: 40px 0; }
+  .footer-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .contract-box {
+    display: flex; align-items: center; gap: 10px; background: var(--bg-alt);
+    border: 1px solid var(--border); border-radius: 10px; padding: 10px 16px; font-size: 13px; color: var(--text-dim);
+  }
+  .contract-box code { color: var(--text); }
+  .copy-btn { background: transparent; border: 1px solid var(--border); color: var(--text-dim); border-radius: 6px; padding: 4px 10px; font-size: 12px; cursor: pointer; }
+  .copy-btn:hover { color: var(--text); border-color: var(--accent); }
+  .social { display: flex; gap: 16px; color: var(--text-dim); font-size: 14px; }
+  .disclaimer { color: var(--text-dim); font-size: 11px; margin-top: 24px; text-align: center; opacity: .7; }
+
+  /* EXPLAIN-MODE SPEECH BUBBLES */
+  .bubble {
+    display: none;
+    position: relative;
+    background: #33261a;
+    border: 1px solid var(--accent);
+    border-radius: 14px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: var(--text);
+    text-align: left;
+    margin: 6px auto 28px;
+    max-width: 520px;
+  }
+  .bubble::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 32px;
+    width: 14px;
+    height: 14px;
+    background: #33261a;
+    border-left: 1px solid var(--accent);
+    border-top: 1px solid var(--accent);
+    transform: rotate(45deg);
+  }
+  .bubble b { color: var(--accent-2); }
+  body.explain-on .bubble { display: block; }
+  #explainToggle {
+    position: fixed; bottom: 24px; right: 24px; z-index: 60;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  }
+
+  @media (max-width: 860px) {
+    .stats, .steps, .grants, .gov-grid { grid-template-columns: repeat(2, 1fr); }
+    h1 { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <!-- ===== HIER ÄNDERN: Projektname im Menü =====
+       Tipp: Namen unter ca. 20 Zeichen halten — laengere Namen brechen in der mobilen
+       Navigation leicht um oder verdraengen die Buttons daneben. -->
+  <nav>
+    <div class="logo"><div class="logo-mark"></div>Meridian DAO</div>
+    <div class="nav-links">
+      <a href="#grants">Grants</a>
+      <a href="#governance">Governance</a>
+      <a href="#docs">Docs</a>
+    </div>
+    <div style="display:flex; gap:10px;">
+      <button class="btn btn-ghost">Docs</button>
+      <button class="btn btn-primary" id="walletBtn">Connect Wallet</button>
+    </div>
+  </nav>
+  <div class="bubble" style="margin-left:auto;">
+    <b>Docs / Connect Wallet (Nav):</b> "Docs" verlinkt zur Governance-Dokumentation. "Connect Wallet" verknüpft die Wallet für Abstimmungen/Mitgliedschaft — hier nur optischer Dummy.
+  </div>
+
+  <header class="hero">
+    <div class="badge"><span class="dot"></span> 1.240 aktive Mitglieder</div>
+    <div class="bubble">
+      <b>Live-Badge:</b> Bei einer DAO ist die Mitgliederzahl das zentrale Vertrauenssignal — zeigt "hier ist eine echte, aktive Community", nicht nur eine Idee auf dem Papier.
+    </div>
+    <!-- ===== HIER ÄNDERN: Haupt-Überschrift und Untertext =====
+         Tipp: Diese erste Zeile entscheidet, ob jemand weiterliest — unter ~60 Zeichen
+         halten, sonst bricht sie auf kleinen Bildschirmen unschoen um und verliert Wirkung. -->
+    <h1>Wir finanzieren <span>Builder</span>, gemeinsam.</h1>
+    <p class="subhead">Meridian DAO vergibt community-gestimmte Grants an unabhängige Web3-Entwickler — transparent, on-chain, ohne Gatekeeper.</p>
+    <div class="hero-ctas">
+      <button class="btn btn-primary">Mitglied werden</button>
+      <button class="btn btn-ghost">Discord beitreten</button>
+    </div>
+    <div class="bubble">
+      <b>Mitglied werden:</b> Haupt-Conversion-Ziel der Seite — führt zum Onboarding-Flow. <b>Discord beitreten:</b> Bei DAOs ist Discord meist der eigentliche Community-Kern, die Landingpage ist nur die Visitenkarte davor.
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="num" id="treasury">$0</div><div class="label">Treasury</div></div>
+      <div class="stat"><div class="num" id="grantsCount">0</div><div class="label">Vergebene Grants</div></div>
+      <div class="stat"><div class="num" id="members">0</div><div class="label">Mitglieder</div></div>
+      <div class="stat"><div class="num" id="proposals">0</div><div class="label">Proposals gesamt</div></div>
+    </div>
+    <div class="bubble">
+      <b>Stats-Leiste:</b> Zeigt Aktivität statt nur Ankündigung — Treasury-Größe und Anzahl vergebener Grants beweisen, dass hier wirklich Geld fließt, nicht nur diskutiert wird.
+    </div>
+  </header>
+
+  <section id="how">
+    <div class="section-tag">Wie es funktioniert</div>
+    <div class="section-title">Vom Vorschlag zur Finanzierung</div>
+    <p class="section-sub">Jeder kann einreichen, die Community entscheidet.</p>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h3>Proposal einreichen</h3><p>Projektidee und Budget als Vorschlag an die DAO stellen — offen für alle Mitglieder.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Community stimmt ab</h3><p>Token-gewichtete Abstimmung, transparent einsehbar, festes Zeitfenster.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Grant wird ausgezahlt</h3><p>Bei Annahme automatische Auszahlung aus dem Treasury via Smart Contract.</p></div>
+    </div>
+  </section>
+
+  <section id="grants">
+    <div class="section-tag">Grants</div>
+    <div class="section-title">Aktuell geförderte Projekte</div>
+    <p class="section-sub">Eine Auswahl der zuletzt bewilligten Vorschläge.</p>
+    <!-- ===== HIER ÄNDERN: Grant-Projekte, Kategorien, Beträge =====
+         Tipp: Konkrete, bereits bewilligte Beispiele wirken glaubwuerdiger als abstrakte
+         Zukunftsversprechen — lieber 3 echte, nachvollziehbare Faelle zeigen als eine
+         lange Vision ohne Belege. Gilt uebrigens fuer jede Art von Trust-Building, nicht
+         nur fuer DAOs. -->
+    <div class="grants">
+      <div class="grant-card">
+        <div class="grant-top"><span class="cat">Tooling</span></div>
+        <h4>Open-Source Wallet-SDK</h4>
+        <p>Leichtgewichtiges SDK für mobile Wallet-Integrationen, MIT-lizenziert.</p>
+        <div class="grant-meta"><span>Bewilligt</span><span class="amount">$18.000</span></div>
+      </div>
+      <div class="grant-card">
+        <div class="grant-top"><span class="cat">Education</span></div>
+        <h4>Web3-Onboarding-Kurs</h4>
+        <p>Kostenloser Einsteigerkurs für Entwickler ohne Blockchain-Vorerfahrung.</p>
+        <div class="grant-meta"><span>Bewilligt</span><span class="amount">$9.500</span></div>
+      </div>
+      <div class="grant-card">
+        <div class="grant-top"><span class="cat">Infrastructure</span></div>
+        <h4>Community-RPC-Node</h4>
+        <p>Öffentlicher, kostenloser RPC-Endpunkt für kleine Projekte ohne eigenes Budget.</p>
+        <div class="grant-meta"><span>Bewilligt</span><span class="amount">$24.000</span></div>
+      </div>
+    </div>
+    <div class="bubble">
+      <b>Grant-Karten:</b> Sozialer Beweis in Aktion — zeigt konkret, wofür das Treasury-Geld eingesetzt wird, statt abstrakter Versprechen. Wichtig für neue Antragsteller, um Erwartungen zu kalibrieren.
+    </div>
+  </section>
+
+  <section id="governance">
+    <div class="section-tag">Governance</div>
+    <div class="section-title">Echte Mitbestimmung</div>
+    <p class="section-sub">Keine versteckte Kontrolle durch ein kleines Kernteam.</p>
+    <div class="gov-grid">
+      <div class="gov-card"><div class="gov-icon">🗳️</div><h4>Token-Voting</h4><p>1 Token = 1 Stimme, on-chain nachvollziehbar</p></div>
+      <div class="gov-card"><div class="gov-icon">🔓</div><h4>Offenes Treasury</h4><p>Jede Transaktion öffentlich einsehbar</p></div>
+      <div class="gov-card"><div class="gov-icon">⏱️</div><h4>Feste Abstimmungsfenster</h4><p>7 Tage pro Proposal, keine Hauruck-Entscheidungen</p></div>
+      <div class="gov-card"><div class="gov-icon">🧾</div><h4>Multi-Sig-Auszahlung</h4><p>Keine Einzelperson kann Mittel bewegen</p></div>
+    </div>
+    <div class="bubble">
+      <b>Governance-Badges:</b> Beantwortet die Hauptsorge bei DAOs vorab: "Wer kontrolliert wirklich das Geld?" — genau diese Frage stellen sich potenzielle Mitglieder als Erstes.
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-row">
+      <!-- ===== HIER ÄNDERN: echte Treasury-Adresse + Etherscan-Link =====
+           Ein oeffentlich einsehbares Treasury ist das Kernversprechen einer DAO
+           ("wir kontrollieren das Geld nicht heimlich") — diese Box macht das Versprechen
+           tatsaechlich ueberpruefbar statt es nur zu behaupten. Ohne echte Adresse verpufft
+           genau dieser Vertrauens-Effekt. -->
+      <div class="contract-box">
+        Treasury: <code>0x9F2...4Ab1</code>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText('0x9F2000000000000000000000000000000004Ab1')">Copy</button>
+        <a href="#" style="color:var(--accent-2)">Etherscan ↗</a>
+      </div>
+      <div class="social">
+        <a href="#">X / Twitter</a>
+        <a href="#">Discord</a>
+        <a href="#">Snapshot</a>
+      </div>
+    </div>
+    <div class="bubble">
+      <b>Treasury-Box:</b> Erlaubt jedem, live nachzuprüfen, wie viel Geld tatsächlich in der DAO liegt — Kernversprechen von "offenem Treasury" wird hier einlösbar gemacht, nicht nur behauptet.
+    </div>
+    <p class="disclaimer">Demo-/Portfolio-Landingpage · fiktives Projekt · keine echte Finanzdienstleistung</p>
+  </footer>
+</div>
+
+<button id="explainToggle" class="btn btn-primary">🔍 Erklär-Modus</button>
+
+<script>
+  // ===== HIER ÄNDERN: Statistik-Zahlen der Stats-Leiste (oben, unter dem Hero-Text) =====
+  // Diese Werte werden beim Laden der Seite animiert hochgezaehlt.
+  // Nicht nur Deko: Mitgliederzahl ist bei einer DAO die wichtigste Vertrauens-Kennzahl —
+  // sie beantwortet unbewusst "ist das eine echte, aktive Community oder nur eine Idee auf
+  // dem Papier?". Unrealistisch hohe Zahlen wirken dabei eher unglaubwuerdig als beeindruckend.
+  const CONFIG = {
+    treasury: 1.8,       // Treasury-Groesse in Millionen $ (wird beim Hochzaehlen auf ganze Zahlen abgerundet, z.B. "$1M")
+    grantsCount: 47,     // Anzahl vergebener Grants
+    members: 1240,       // Anzahl Mitglieder
+    proposals: 86        // Anzahl Proposals gesamt
+  };
+
+  document.getElementById('explainToggle').addEventListener('click', function () {
+    document.body.classList.toggle('explain-on');
+    this.textContent = document.body.classList.contains('explain-on') ? '✕ Erklärungen aus' : '🔍 Erklär-Modus';
+  });
+
+  document.getElementById('walletBtn').addEventListener('click', function () {
+    this.textContent = this.textContent === 'Connect Wallet' ? '0x9F20...4Ab1' : 'Connect Wallet';
+  });
+
+  function animateCount(id, target, prefix, suffix, duration) {
+    const el = document.getElementById(id);
+    const startTime = performance.now();
+    function step(now) {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const value = Math.floor(target * progress);
+      el.textContent = prefix + value.toLocaleString('en-US') + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  animateCount('treasury', CONFIG.treasury, '$', 'M', 1200);
+  animateCount('grantsCount', CONFIG.grantsCount, '', '', 1000);
+  animateCount('members', CONFIG.members, '', '', 1400);
+  animateCount('proposals', CONFIG.proposals, '', '', 1000);
+</script>
+
+</body>
+</html>
