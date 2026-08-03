@@ -147,17 +147,8 @@
   .modal-close:hover { color: var(--text); }
 
   .legal-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 16px; }
-  .legal-links a { color: var(--text-dim); text-decoration: underline; cursor: pointer; }
+  .legal-links a { color: var(--text-dim); text-decoration: underline; }
   .legal-links a:hover { color: var(--text); }
-
-  .legal-section {
-    display: none; text-align: left; max-width: 640px; margin: 0 auto 40px;
-    background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px 32px;
-  }
-  .legal-section.open { display: block; }
-  .legal-section h3 { font-size: 17px; margin-bottom: 14px; }
-  .legal-section p { color: var(--text-dim); font-size: 13px; margin-bottom: 10px; }
-  .legal-section .fill { color: #eab308; }
 
   @media (max-width: 720px) {
     .products { grid-template-columns: 1fr; }
@@ -247,15 +238,8 @@
   <div class="legal-links">
     <a href="../impressum.html">Impressum</a>
     <a href="../datenschutz.html">Datenschutz</a>
-    <a onclick="toggleLegal('nutzung')">Nutzungshinweise</a>
+    <a href="../nutzungshinweise.html">Nutzungshinweise</a>
     <a href="../">Alle Links</a>
-  </div>
-
-  <div id="legal-nutzung" class="legal-section">
-    <h3>Nutzungshinweise</h3>
-    <p>Die bereitgestellten Baukästen (Vaultis, Meridian) werden kostenlos und ohne Gewährleistung zur Verfügung gestellt ("as is"). Die Nutzung und Anpassung des Codes erfolgt auf eigenes Risiko.</p>
-    <p>Es wird keine Haftung übernommen für Schäden, die durch die Nutzung, Anpassung oder Veröffentlichung der Vorlagen entstehen — außer bei Vorsatz oder grober Fahrlässigkeit.</p>
-    <p>Die Vorlagen dürfen frei angepasst und für eigene (auch kommerzielle) Zwecke verwendet werden.</p>
   </div>
 
   <footer>Demo-Shop-Seite · Baukästen zum freien Download · Spende ist freiwillig, keine Kaufverpflichtung</footer>
@@ -268,16 +252,6 @@
       this.classList.add('recommended');
     });
   });
-
-  function toggleLegal(id) {
-    var target = document.getElementById('legal-' + id);
-    var wasOpen = target.classList.contains('open');
-    document.querySelectorAll('.legal-section').forEach(function (s) { s.classList.remove('open'); });
-    if (!wasOpen) {
-      target.classList.add('open');
-      target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-  }
 </script>
 
 </body>
