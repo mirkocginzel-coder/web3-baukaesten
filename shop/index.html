@@ -17,6 +17,45 @@
 <meta name="twitter:description" content="Kostenlose Web3-Landingpage-Baukästen für DeFi- und DAO-Projekte — fertig, anpassbar, ohne Programmierkenntnisse.">
 <meta name="twitter:image" content="https://mirkocginzel-coder.github.io/web3-baukaesten/assets/tokenguide-bg.jpg">
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "SoftwareApplication",
+      "position": 1,
+      "name": "Vaultis — DeFi Vault Template",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Any (statisches HTML/CSS/JS)",
+      "description": "Dunkles, technisches Landingpage-Template für Staking-/Yield-Protokolle. Wallet-Connect-UI, Vault-Karten, Security-Badges, live-animierte Kennzahlen. Kostenloser Download, freiwillige Spende möglich.",
+      "url": "https://mirkocginzel-coder.github.io/web3-baukaesten/vaultis-defi/",
+      "screenshot": "https://mirkocginzel-coder.github.io/web3-baukaesten/assets/vaultis-preview.png",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "position": 2,
+      "name": "Meridian — DAO Community Template",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Any (statisches HTML/CSS/JS)",
+      "description": "Warmes, einladendes Landingpage-Template für Grants-/Governance-DAOs. Vote-Mechanik-Sektion, Grant-Karten, Treasury-Box, Community-Statistiken. Kostenloser Download, freiwillige Spende möglich.",
+      "url": "https://mirkocginzel-coder.github.io/web3-baukaesten/meridian-dao/",
+      "screenshot": "https://mirkocginzel-coder.github.io/web3-baukaesten/assets/meridian-preview.png",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+  ]
+}
+</script>
+
 <style>
   :root {
     --bg: #0f0d17;
@@ -63,7 +102,9 @@
   .preview {
     height: 160px; display: flex; align-items: center; justify-content: center;
     font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+    overflow: hidden;
   }
+  .preview img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
   .preview.vaultis { background: linear-gradient(135deg, #0b1220, #101a2e); color: #3b82f6; }
   .preview.meridian { background: linear-gradient(135deg, #1a1410, #221a14); color: #ff8a3d; }
   .product-body { padding: 24px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
@@ -205,24 +246,24 @@
 
   <div class="products">
     <div class="product-card">
-      <div class="preview vaultis">DeFi / Vault-Stil</div>
+      <div class="preview vaultis"><img src="../assets/vaultis-preview.png" alt="Vaultis DeFi-Vault-Landingpage-Vorlage: dunkles Theme, Wallet-Connect-Button, Kennzahlen zu Total Value Locked und Depositors"></div>
       <div class="product-body">
         <h3>Vaultis — DeFi Vault Template</h3>
         <p>Dunkles, technisches Design für Staking-/Yield-Protokolle. Wallet-Connect-UI, Vault-Karten, Security-Badges, live-animierte Stats.</p>
         <div class="tags"><span class="tag">DeFi</span><span class="tag">Dark Theme</span><span class="tag">Wallet UI</span></div>
         <a class="download-btn" href="../downloads/vaultis-defi-baukasten.zip" download>⬇ Kostenlos herunterladen (.zip)</a>
-        <div class="file-note">Enthält: index.html, kein Passwort, sofort einsatzbereit</div>
+        <div class="file-note"><a href="../vaultis-defi/" target="_blank" rel="noopener">🔗 Live-Vorschau ansehen</a> · Enthält: index.html, kein Passwort, sofort einsatzbereit</div>
       </div>
     </div>
 
     <div class="product-card">
-      <div class="preview meridian">DAO / Community-Stil</div>
+      <div class="preview meridian"><img src="../assets/meridian-preview.png" alt="Meridian DAO-Community-Landingpage-Vorlage: warmes Theme, Grant-Statistiken, Mitgliederzahl und Treasury-Anzeige"></div>
       <div class="product-body">
         <h3>Meridian — DAO Community Template</h3>
         <p>Warmes, einladendes Design für Grants-/Governance-DAOs. Vote-Mechanik-Sektion, Grant-Karten, Treasury-Box, Community-Stats.</p>
         <div class="tags"><span class="tag">DAO</span><span class="tag">Warm Theme</span><span class="tag">Governance UI</span></div>
         <a class="download-btn" href="../downloads/meridian-dao-baukasten.zip" download>⬇ Kostenlos herunterladen (.zip)</a>
-        <div class="file-note">Enthält: index.html, kein Passwort, sofort einsatzbereit</div>
+        <div class="file-note"><a href="../meridian-dao/" target="_blank" rel="noopener">🔗 Live-Vorschau ansehen</a> · Enthält: index.html, kein Passwort, sofort einsatzbereit</div>
       </div>
     </div>
   </div>
