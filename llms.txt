@@ -1,0 +1,16 @@
+# Web3 Baukästen
+
+> Kostenlose Web3-Landingpage-Baukästen (Vaultis, Meridian) für DeFi- und DAO-Projekte — fertig, anpassbar, ohne Programmierkenntnisse. Kostenloser Download, freiwillige Spende möglich.
+
+Web3 Baukästen bietet zwei fertige, statische HTML/CSS/JS-Landingpage-Vorlagen zum kostenlosen Download und Selbstanpassen. Beide sind reine Design-Vorlagen (Schaufenster-Seiten) ohne echte Blockchain-Funktionalität — der "Connect Wallet"-Button ist dekorativ, wie in jedem README.txt der Downloads dokumentiert.
+
+## Produkte
+
+- [Vaultis — DeFi Vault Template](/shop/): Dunkles Design für Staking-/Yield-Protokolle. [Live-Vorschau](/vaultis-defi/)
+- [Meridian — DAO Community Template](/shop/): Warmes Design für Grants-/Governance-DAOs. [Live-Vorschau](/meridian-dao/)
+
+## Rechtliches
+
+- [Impressum](/impressum.html)
+- [Datenschutzerklärung](/datenschutz.html)
+- [Nutzungshinweise](/nutzungshinweise.html)
