@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mirkocginzel-coder.github.io/web3-baukaesten/sitemap.xml
